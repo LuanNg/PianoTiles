@@ -1,0 +1,108 @@
+{
+  "maxLifeLinkedUser": 30,
+  "maxLifeGuestUser": 20,
+  "secondsPerLife": 300,
+  "ratingCondition": 6,
+  "onesignal_app_id": "25794cad-cf79-4c66-9f70-5205ca103a33",
+  "google_project_id": "168277909596",
+  "mopub_ids": [
+    "1e259bbb02594bc4a0f966c09689be8b",
+    "33661ec9aaea42fb9615e3a6aff625cb"
+  ],
+  "mopub_reward_ids": [
+    "8d0ced5856e74c7585eda4b76853c19b",
+    "bc437a03142943e1b3cd9f7167238cd2"
+  ],
+  "videoAdsReward": 10,
+  "nativead_ids": [
+    "1043649252335853_1075060912528020",
+    "1057601684309421_1057601884309401"
+  ],  
+  "adsInterval": 60,
+  "unityads_ids": [
+    "1073253",
+    "1073252",
+    "rewardedVideo",
+    "fullScreenVideo"
+  ],
+  "priorityMopub": [
+    true,
+    true
+  ],
+  "showFullscreenAds": [
+    false,
+    false
+  ],
+  "adsMessages": [
+    "",
+    ""
+  ],
+  "adsImages": [
+    "",
+    ""
+  ],
+  "adsURL": [
+    "",
+    ""
+  ],
+  "iap_values": [
+    200,
+    400,
+    825
+  ],
+  "lives_exchange_values": [
+    5,
+    10,
+    25,
+    60
+  ],
+  "lives_exchange_prices": [
+    25,
+    45,
+    90,
+    190
+  ],
+  "defaultSpeedTable": [
+    1,
+    1.15,
+    1.25,
+    1.5,
+    1.7,
+    0.015
+  ],
+  "dailyrewardLives": [
+    0,
+    0,
+    0,
+    3,
+    3,
+    4,
+    5
+  ],
+  "dailyrewardDiamonds": [
+    5,
+    7,
+    9,
+    0,
+    5,
+    7,
+    10
+  ],
+  "maxDiamondPerGame": 3,
+  "diamondChance": 0.025,
+  "maxContinuePerGame": 3,
+  "startingPriceToContinue": 2,
+  "scoreToDropDiamond": 400,
+  "speedToDropDiamond": 2.2,
+  "enableTips": true,
+  "tipsKey": [
+    "tips1",
+    "tips2",
+    "tips3"
+  ],
+  "eventsURL": "",
+  "achievementPropertiesURL": "https://s3.amazonaws.com/pianochallenge2/pc201/PropertyData201.csv",
+  "achievementURL": "https://s3.amazonaws.com/pianochallenge2/pc201/AchievementData201.csv",
+  "localizationURL": "https://s3.amazonaws.com/pianochallenge2/pc201/Localization201.csv",
+  "storeDataURL": "https://s3.amazonaws.com/pianochallenge2/pc201/store201.csv"
+}

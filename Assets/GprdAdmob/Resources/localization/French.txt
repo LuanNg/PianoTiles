@@ -1,0 +1,6 @@
+textN1	Cher utilisateur!
+textN2	Nous utilisons Google Admob pour diffuser des annonces. Les annonces soutiennent notre travail et permettent de développer davantage cette application. Conformément au nouveau règlement européen sur la protection des données (GDPR), nous avons besoin de votre consentement pour diffuser des annonces adaptées à vos besoins
+textN3	Pouvez-vous utiliser des données pour diffuser des annonces adaptées à vos besoins?
+textN4	Découvrez comment vos données sont utilisées
+textN5	OUI, CONTINUER D'AFFICHER DES ANNONCES PERTINENTES
+textN6	NON, AFFICHER DES ANNONCES IRRELEVANTES

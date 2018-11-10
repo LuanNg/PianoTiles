@@ -1,0 +1,6 @@
+textN1	عزيزي المستخدم!
+textN2	نحن نستخدم Google Admob لعرض الإعلانات. تدعم الإعلانات عملنا وتمكن من تطوير هذا التطبيق. تماشياً مع اللائحة الأوروبية الجديدة لحماية البيانات (GDPR) ، نحتاج إلى موافقتك على عرض الإعلانات المصممة خصيصًا لك
+textN3	هل يمكن استخدام البيانات لعرض الإعلانات المخصصة لك؟
+textN4	Learn how your data is used
+textN5	YES, CONTINUE TO SHOW RELEVANT ADS
+textN6	NO, SHOW ADS THAT ARE IRRELEVANT
