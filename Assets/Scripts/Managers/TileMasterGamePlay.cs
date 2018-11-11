@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//MAIN CLASS FOR INSTANTIATING TILES
+
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -1001,31 +1003,38 @@ namespace Mio.TileMaster {
 
 
         //LOL, the player fucked up, we should humiliate him
-        public void ProcessGameOverEvent () {
+        public void ProcessGameOverEvent ()
+        {
 
             Helpers.Callback(OnGameOver);
             currentState = GameState.GameOver;
         }
 
-        void OnApplicationPause (bool pauseStatus) {
-            if (pauseStatus) {
+        void OnApplicationPause (bool pauseStatus)
+        {
+            if (pauseStatus)
+            {
                 PauseGame();
             }
-            else {
+            else
+            {
                 ContinueGame();
             }
         }
 
-        public void StopAutoPlay () {
+        public void StopAutoPlay ()
+        {
             ChangeStatusToGameOver();
             ProcessGameOverEvent();
         }
 
-        public void PrepareNewGame () {
+        public void PrepareNewGame ()
+        {
             ResetGame();
 
             //spawn 12 rows of tiles
-            for (int i = 0; i < 12; i++) {
+            for (int i = 0; i < 12; i++)
+            {
                 GenerateNextTile();
             }
 
@@ -1037,7 +1046,8 @@ namespace Mio.TileMaster {
         /// Slow down crazy child, let the ads load, then you can play
         /// </summary>
         /// <returns></returns>
-        IEnumerator<float> WaitForLoadingAds () {
+        IEnumerator<float> WaitForLoadingAds ()
+        {
             noteStart.SetLoading(true);
             //float elapsedTime = 0;
             yield return Timing.WaitForSeconds(0.5f);
@@ -1091,13 +1101,16 @@ namespace Mio.TileMaster {
         }
 
         #region Function for new UI gameplay
-        public void StartGame () {
-            if (isListenThisSong) {                
+        public void StartGame ()
+        {
+            if (isListenThisSong)
+            {                
                 SetAutoPlayUI();
                 currentRunSpeed = targetSpeed;
                 currentState = GameState.AutoPlay;
             }
-            else {
+            else
+            {
                 currentState = GameState.Playing;
                 InGameUIController.Instance.gameStarted = true;
             }

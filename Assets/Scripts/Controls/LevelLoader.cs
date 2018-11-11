@@ -35,7 +35,8 @@ namespace Mio.TileMaster {
                         );
         }
 
-        private void OnLevelDownloadCompleted(WWW midi) {
+        private void OnLevelDownloadCompleted(WWW midi)
+        {
             //try {
             byte[] midiData = midi.bytes;
             var data = new MidiData();

@@ -5,7 +5,8 @@ using System;
 /// <summary>
 /// Helper class to deal with every task related to files and folder
 /// </summary>
-public class FileUtilities {
+public class FileUtilities
+{
     //private static System.Security.Cryptography.RijndaelManaged rijndael = new System.Security.Cryptography.RijndaelManaged();
 
     /// <summary>
@@ -15,10 +16,12 @@ public class FileUtilities {
     /// <param name="password">If not null, will be used to decrypt the file</param>
     /// <param name="isAbsolutePath">Is the file path an absolute one?</param>
     /// <returns></returns>
-    public static string LoadFileWithPassword(string filePath, string password = null, bool isAbsolutePath = false) {
+    public static string LoadFileWithPassword(string filePath, string password = null, bool isAbsolutePath = false)
+    {
         var bytes = LoadFile(filePath, isAbsolutePath);
         //Debug.Log("Loading file at " + filePath);
-        if (bytes != null) {
+        if (bytes != null)
+        {
             string text = System.Text.Encoding.UTF8.GetString(bytes,0, bytes.Length);
             //Debug.Log("--File read: " + text);
             if (!string.IsNullOrEmpty(password)) {
@@ -68,7 +71,8 @@ public class FileUtilities {
     /// <param name="filePath">Path to the file</param>
     /// <param name="isAbsolutePath">Is this path an absolute one?</param>
     /// <returns>Data of the file, in byte[] format</returns>
-    public static byte[] LoadFile(string filePath, bool isAbsolutePath = false) {
+    public static byte[] LoadFile(string filePath, bool isAbsolutePath = false)
+    {
         if (filePath == null || filePath.Length == 0) {
             return null;
         }

@@ -114,7 +114,8 @@ namespace Mio.TileMaster {
         /// Load up the level, and start the game as needed
         /// </summary>
         /// <returns></returns>
-        IEnumerator<float> C_StartGame () {
+        IEnumerator<float> C_StartGame ()
+        {
             ChangeState(UIState.Downloading);
             //a little time to calm down
             yield return Timing.WaitForSeconds(0.1f);
@@ -122,7 +123,8 @@ namespace Mio.TileMaster {
             //try to read local song files first
             SongTileData tileData = SaveBinarySongDataSystem.LoadTileDataFromResource(levelData.songData.storeID);
 
-            if (tileData == null) {
+            if (tileData == null)
+            {
                 //if there is no local song, download new file from the internet
                 yield return 0;
                 //Debug.Log("Trying to download from the Internet");
@@ -197,6 +199,8 @@ namespace Mio.TileMaster {
             gamelogic.ContinueGame(afterPause);
         }
 
+
+        //SONG PARSED NOTE AND SORTING
         private void OnSongParsed (bool isSucceed, LevelDataModel levelData) {
             if (isSucceed) {
                 this.levelData.playbackData = levelData.playbackData;

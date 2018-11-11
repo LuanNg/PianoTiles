@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿//FULL SONG INFO
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class NoteData {
+public class NoteData
+{
     public float timeAppear;
     public int nodeID;
     public float duration = 0;
@@ -12,7 +15,8 @@ public class NoteData {
     public float volume = 0;
 }
 
-public class MidiData {
+public class MidiData
+{
     public string songName;
     public float beatsPerMinute;
     public float deltaTickPerQuarterNote;

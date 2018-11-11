@@ -50,39 +50,39 @@ namespace Mio.Utils {
             string id = androidID;
 #if UNITY_IOS
             id = iosID;
-#endif
             Advertisement.Initialize(id);
+#endif
         }
 
         public void ShowRewardedAd () {
             if (!isEnabled) return;
 #if UNITY_ANDROID || UNITY_IPHONE
-            if (Advertisement.IsReady(rewardVideoID)) {
-                Advertisement.Show(rewardVideoID, new ShowOptions {
-                    resultCallback = HandleShowResultRewardDiamond
-                });
-            }
+            //if (Advertisement.IsReady(rewardVideoID)) {
+            //    Advertisement.Show(rewardVideoID, new ShowOptions {
+            //        resultCallback = HandleShowResultRewardDiamond
+            //    });
+            //}
 #endif
         }
 
         public void ShowRewardVideoPostponeAds () {
             if (!isEnabled) return;
 #if UNITY_ANDROID || UNITY_IPHONE
-            if (Advertisement.IsReady(rewardIDPostponeAds)) {
-                Advertisement.Show(rewardIDPostponeAds, new ShowOptions {
-                    resultCallback = HandleShowResultPostponeAds
-                });
-            }
+            //if (Advertisement.IsReady(rewardIDPostponeAds)) {
+            //    Advertisement.Show(rewardIDPostponeAds, new ShowOptions {
+            //        resultCallback = HandleShowResultPostponeAds
+            //    });
+            //}
 #endif
         }
 
         public void ShowInterstitialAds (bool callMopubIfAdNotAvailable = true) {
             if (!isEnabled) return;
 #if UNITY_ANDROID || UNITY_IPHONE
-            if (Advertisement.IsReady(interstitialZoneID)) {
-                Advertisement.Show(interstitialZoneID);
-                //AdHelper.Instance.ResetTimeStamp();
-            }
+            //if (Advertisement.IsReady(interstitialZoneID)) {
+            //    Advertisement.Show(interstitialZoneID);
+            //    //AdHelper.Instance.ResetTimeStamp();
+            //}
             //else {
             //    if (callMopubIfAdNotAvailable) {
             //        AdHelper.Instance.DisplayInterstitialAds();

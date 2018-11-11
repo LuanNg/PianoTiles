@@ -55,6 +55,7 @@ namespace Mio.TileMaster {
             MidiPlayer.Instance.Initialize();
             MidiPlayer.Instance.ShouldPlay = true;
 
+            //THIS IS WHERE ALL STARTS
             OnLanguageConfirmed();
         }
 

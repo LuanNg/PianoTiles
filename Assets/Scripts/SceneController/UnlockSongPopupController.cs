@@ -30,7 +30,8 @@ namespace Mio.TileMaster {
             }
         }
 
-        public override void OnEnableFS () {
+        public override void OnEnableFS ()
+        {
             base.OnEnableFS();
 
             for(int i = 0; i < listSongItems.Count; i++) {

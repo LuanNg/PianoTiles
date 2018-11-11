@@ -324,6 +324,8 @@ namespace Mio.TileMaster
 
         private void OnSongItemClicked(SongDataModel obj)
         {
+            Debug.Log("<color=red>OnSongItemClicked "+obj.name+"</color>");
+
             //check if user has enough lives to continue?
             if (LivesManager.Instance.CanPlaySong())
             {

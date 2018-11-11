@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System;
 
 namespace Mio.Utils {
-    public class AudioManager : MonoSingleton<AudioManager> {
+    public class AudioManager : MonoSingleton<AudioManager>
+    {
         [SerializeField]
         private AudioSource bgmPlayer;
         [SerializeField]
@@ -32,7 +33,8 @@ namespace Mio.Utils {
             InitAudioControllWithDevice();
         }
 
-        public void InitAudioControllWithDevice () {
+        public void InitAudioControllWithDevice ()
+        {
 #if UNITY_ANDROID && !UNITY_EDITOR
             if (bestPerformance){
                 MakeAudioSource();
@@ -42,14 +44,16 @@ namespace Mio.Utils {
 #else
             MakeAudioSource();
 #endif
-            if (cachedSound == null) {
+            if (cachedSound == null)
+            {
                 cachedSound = new List<AudioClip>(100);
             }
             isInitialized = true;
         }
 
         private float m_Volume = 0.7f;
-        public float Volume {
+        public float Volume
+        {
             get { return m_Volume; }
             set {
                 m_Volume = value;
@@ -60,12 +64,18 @@ namespace Mio.Utils {
             }
         }
 
-        public void MakeAudioSource () {
-            if (sfxPlayers == null || sfxPlayers.Length <= maxSFXStream) {
+        public void MakeAudioSource ()
+        {
+
+            Debug.LogWarning("<color=red>MakeAudioSource</color>");
+
+            if (sfxPlayers == null || sfxPlayers.Length <= maxSFXStream)
+            {
                 sfxPlayers = new AudioSource[maxSFXStream];
             }
 
-            for (int i = 0; i < maxSFXStream; i++) {
+            for (int i = 0; i < maxSFXStream; i++)
+            {
                 sfxPlayers[i] = gameObject.AddComponent<AudioSource>();
                 sfxPlayers[i].playOnAwake = false;
                 sfxPlayers[i].dopplerLevel = 0;
@@ -77,8 +87,10 @@ namespace Mio.Utils {
 
         public bool MuteSFX { get; set; }
 
-        private void SetSFXVolume (float vol) {
-            for (int i = 0; i < sfxPlayers.Length; i++) {
+        private void SetSFXVolume (float vol)
+        {
+            for (int i = 0; i < sfxPlayers.Length; i++)
+            {
                 sfxPlayers[i].volume = vol;
             }
         }
@@ -87,23 +99,28 @@ namespace Mio.Utils {
         /// <summary>
         /// Load sound clip from specified path
         /// </summary>
-        public int LoadSound (string soundPath) {
+        public int LoadSound (string soundPath)
+        {
             if (!isInitialized) Initialize();
 
             AudioClip clip = Resources.Load<AudioClip>(soundPath);
-            if (clip != null) {
+            if (clip != null)
+            {
                 cachedSound.Add(clip);
                 return cachedSound.Count - 1;
             }
-            else {
+            else
+            {
                 return -1;
             }
         }
 
-        public int LoadSound (AudioClip clip) {
+        public int LoadSound (AudioClip clip)
+        {
             if (!isInitialized) Initialize();
 
-            if (clip != null) {
+            if (clip != null)
+            {
                 cachedSound.Add(clip);
                 return cachedSound.Count - 1;
             }
@@ -116,19 +133,24 @@ namespace Mio.Utils {
         /// </summary>
         /// <param name="soundPath"></param>
         /// <returns></returns>
-        public int LoadSoundForAndroid (string soundPath) {
+        public int LoadSoundForAndroid (string soundPath)
+        {
             if (!isInitialized) Initialize();
 
             return AndroidNativeAudio.load(soundPath);
         }
 
-        public void UnLoadSoundForAndroidNative () {
+        public void UnLoadSoundForAndroidNative ()
+        {
             AndroidNativeAudio.releasePool();
         }
 
-        public void UnLoadSoundForAudioClip () {
-            if (sfxPlayers != null) {
-                for (int i = 0; i < sfxPlayers.Length; i++) {
+        public void UnLoadSoundForAudioClip ()
+        {
+            if (sfxPlayers != null)
+            {
+                for (int i = 0; i < sfxPlayers.Length; i++)
+                {
                     Destroy(sfxPlayers[i]);
                 }
                 sfxPlayers = null;
@@ -136,22 +158,28 @@ namespace Mio.Utils {
             cachedSound.Clear();
         }
 
-        public void PlaySound (int id, float volume = -1) {
+        public void PlaySound (int id, float volume = -1)
+        {
             //if (cancelSound)
             //    return;
             if (!isInitialized) Initialize();
 
-            if (volume == -1) {
+            if (volume == -1)
+            {
                 volume = m_Volume;
             }
-            else {
+            else
+            {
                 volume = volume * m_Volume;
             }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            if (bestPerformance){
+            if (bestPerformance)
+            {
                 PlayWithAudioSource(id, volume);
-            }else{
+            }
+            else
+            {
                 AndroidNativeAudio.play(id, volume);
             }                
 #else
@@ -159,30 +187,37 @@ namespace Mio.Utils {
 #endif
         }
 
-        public void PlaySounds (int[] ids, float volume = -1) {
+        public void PlaySounds (int[] ids, float volume = -1)
+        {
             if (!isInitialized) Initialize();
             //if (cancelSound)
             //    return;
-            if (volume == -1) {
+            if (volume == -1)
+            {
                 volume = m_Volume;
             }
-            else {
+            else
+            {
                 volume = volume * m_Volume;
             }
                         
             AndroidNativeAudio.play(ids, volume);                            
         }
 
-        public void PlayWithAudioSource (int id, float volume) {
-            if (id >= 0 && id < cachedSound.Count) {
+        public void PlayWithAudioSource (int id, float volume)
+        {
+            if (id >= 0 && id < cachedSound.Count)
+            {
                 //sfxPlayers[0].PlayOneShot(cachedSound[id]);
                 int oldestIndex = 0;
                 float longestAudioClip = 0;
 
                 //check all currently sfx player
-                for (int i = 0; i < maxSFXStream; i++) {
+                for (int i = 0; i < maxSFXStream; i++)
+                {
                     //if there is any idle player
-                    if (!sfxPlayers[i].isPlaying) {
+                    if (!sfxPlayers[i].isPlaying)
+                    {
                         //use it to play the requested clip
                         sfxPlayers[i].clip = (cachedSound[id]);
                         sfxPlayers[i].volume = volume;
@@ -193,9 +228,11 @@ namespace Mio.Utils {
                         return;
                     }
                     //if no player available
-                    else {
+                    else
+                    {
                         //check the longest one
-                        if (sfxPlayers[i].time > longestAudioClip) {
+                        if (sfxPlayers[i].time > longestAudioClip)
+                        {
                             //and register it so we can play it later
                             oldestIndex = i;
                             longestAudioClip = sfxPlayers[i].time;
@@ -212,15 +249,18 @@ namespace Mio.Utils {
             }
         }
 
-        public void SetAudioType (bool bestPerformance, Action onCompleted) {
-            if (this.bestPerformance != bestPerformance) {
+        public void SetAudioType (bool bestPerformance, Action onCompleted)
+        {
+            if (this.bestPerformance != bestPerformance)
+            {
                 this.bestPerformance = bestPerformance;
                 MidiPlayer.Instance.SwitchAllSoundAndroidWithType(this.bestPerformance, onCompleted);
                 int audioTypeValue = (this.bestPerformance == false ? 0 : 1);
                 PlayerPrefs.SetInt(AUDIO_TYPE, audioTypeValue);
                 PlayerPrefs.Save();
             }
-            else {
+            else
+            {
                 if (onCompleted != null)
                     onCompleted();
             }

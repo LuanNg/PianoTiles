@@ -8,7 +8,8 @@ namespace Mio.TileMaster {
         New = 2
     }
     [Serializable]
-    public class SongDataModel {
+    public class SongDataModel
+    {
         //unique id for each song
         public int ID;
         //name of the song to be display to user

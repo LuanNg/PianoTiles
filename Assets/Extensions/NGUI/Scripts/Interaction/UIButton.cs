@@ -242,6 +242,7 @@ public class UIButton : UIButtonColor
 
 	protected virtual void OnClick ()
 	{
+        Debug.Log("<color=red>UIButton.OnClick</color>");
 		if (current == null && isEnabled)
 		{
 			current = this;

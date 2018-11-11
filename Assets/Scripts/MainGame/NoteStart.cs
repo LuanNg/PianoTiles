@@ -3,7 +3,8 @@ using System.Collections;
 //using Framework;
 using Mio.TileMaster;
 
-public class NoteStart : NoteSimple {
+public class NoteStart : NoteSimple
+{
 	public GameObject textStart;
     public GameObject loadingAnimation;
 	// Use this for initialization

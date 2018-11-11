@@ -10,7 +10,8 @@ using Mio.Utils.MessageBus;
 /// <summary>
 /// Touch cover: Minimal data using for Touch
 /// </summary>
-public class TouchCover {
+public class TouchCover
+{
     public TouchPhase phase = TouchPhase.Canceled;
     public Vector3 position = Vector3.zero;
     public int fingerId = 0;
@@ -150,7 +151,8 @@ public class InGameUIController : MonoSingleton<InGameUIController> {
         }
     }
 
-    public NoteSimple PopSimple (string name) {
+    public NoteSimple PopSimple (string name)
+    {
         if (poolNoteSimple.Count < 1) {
             GameObject obj = GameObject.Instantiate(prefabNoteSimple) as GameObject;
             NoteSimple simple = obj.GetComponent<NoteSimple>();
@@ -357,12 +359,14 @@ public class InGameUIController : MonoSingleton<InGameUIController> {
 #endif
     }
 
-    public void ProcessControlTouch (TouchCover touch) {
+    public void ProcessControlTouch (TouchCover touch)
+    {
         if (!gameStarted) return;
         if (touch == null) return;
 
         //Touch Press
-        if (touch.phase == TouchPhase.Began) {
+        if (touch.phase == TouchPhase.Began)
+        {
             Vector2 rayOrigin = noteCamera.ScreenToWorldPoint(touch.position);
 
             //check if mouse hit any object?
@@ -372,7 +376,8 @@ public class InGameUIController : MonoSingleton<InGameUIController> {
 
                 //start object?
                 if (gameplay.CurrentGameStage != TileMasterGamePlay.GameState.Playing) {
-                    if (hitObjName.Contains("start")) {
+                    if (hitObjName.Contains("start"))
+                    {
                         //game start
                         NoteStart noteStart = hit.transform.gameObject.GetComponent<NoteStart>();
                         if (noteStart != null) {

@@ -3,7 +3,8 @@ using System.Collections;
 using Mio.TileMaster;
 //using Framework;
 using DG.Tweening;
-public class NoteSimple : MonoBehaviour {
+public class NoteSimple : MonoBehaviour
+{
 	public SpriteRenderer sprite;
     protected const int BASE_COLLIDER_WIDTH = 322;
     protected const int BASE_COLLIDER_HEIGHT = 480;
@@ -31,11 +32,13 @@ public class NoteSimple : MonoBehaviour {
     private int tileIndex = 0;
 
 
-    public bool IsClickable(){
+    public bool IsClickable()
+    {
 		return isClickable;
 	}
 
-    public void Setup(TileData _data,Vector3 _spawnPos,int _tileIndex,int _column,int _height){
+    public void Setup(TileData _data,Vector3 _spawnPos,int _tileIndex,int _column,int _height)
+    {
         if (!isBonus) {
             this.tileIndex = _tileIndex;
             this.data = _data;            
@@ -97,7 +100,8 @@ public class NoteSimple : MonoBehaviour {
         isSyncToServer = false;
 
     }
-	public virtual void Press(TouchCover _touchCover){
+	public virtual void Press(TouchCover _touchCover)
+    {
 		this.touchCover = _touchCover;
 		if (!isClickable) {
 			return;

@@ -8,13 +8,15 @@ using DG.Tweening;
 using MovementEffects;
 
 [RequireComponent(typeof(AudioSource))]
-public class MidiPlayer : MonoSingleton<MidiPlayer> {
+public class MidiPlayer : MonoSingleton<MidiPlayer>
+{
     MidiData data;
     List<NoteData> notesData;
     public AudioClip[] auClipSample;
     public AudioSource auPlaySoundNotes;
     private bool shouldPlay = true;
-    public bool ShouldPlay {
+    public bool ShouldPlay
+    {
         get { return shouldPlay; }
         set { shouldPlay = value; }
     }
@@ -32,9 +34,12 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
         get { return isInitialized; }
     }
 
-    public void Initialize () {
-        if (!isInitialized) {
-            if (auPlaySoundNotes == null) {
+    public void Initialize ()
+    {
+        if (!isInitialized)
+        {
+            if (auPlaySoundNotes == null)
+            {
                 //at least 1 component is guarantied to be available, since we required it in class definition 
                 auPlaySoundNotes = GetComponent<AudioSource>();
             }
@@ -47,15 +52,18 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
         }
     }
 
-    private AudioClip[] SortSample (AudioClip[] a) {
-        Array.Sort(a, (AudioClip a1, AudioClip a2) => {
+    private AudioClip[] SortSample (AudioClip[] a)
+    {
+        Array.Sort(a, (AudioClip a1, AudioClip a2) => 
+        {
             return int.Parse(a1.name).CompareTo(int.Parse(a2.name));
         });
         return a;
     }
 
 
-    public IEnumerator<float> IELoadPianoSound (string folder, Action onCompleted = null) {
+    public IEnumerator<float> IELoadPianoSound (string folder, Action onCompleted = null)
+    {
         float lastRelease = Time.realtimeSinceStartup;
         for (int i = 21; i < 109; i++) {
             string soundName = i.ToString();
@@ -77,7 +85,8 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
 #endif
             pianoSoundIndexByName.Add(soundName, soundID);
             pianoSoundIndexByID.Add(i, soundID);
-            if (Time.realtimeSinceStartup - lastRelease >= 0.02f) {
+            if (Time.realtimeSinceStartup - lastRelease >= 0.02f)
+            {
                 lastRelease = Time.realtimeSinceStartup;
                 //yield return Timing.WaitForSeconds(0.05f);
                 yield return 0;
@@ -90,11 +99,14 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
     }
 
 
-    public void SwitchAllSoundAndroidWithType (bool bestPreformance, Action onCompleted) {
-        if (bestPreformance) {
+    public void SwitchAllSoundAndroidWithType (bool bestPreformance, Action onCompleted)
+    {
+        if (bestPreformance)
+        {
             AudioManager.Instance.UnLoadSoundForAndroidNative();
         }
-        else {
+        else
+        {
             AudioManager.Instance.UnLoadSoundForAudioClip();
         }
         pianoSoundIndexByID.Clear();
@@ -105,7 +117,8 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
     /// <summary>
     /// From midi data, parse and edit to make sure it is ready to be played
     /// </summary>
-    private void BuildNoteData () {
+    private void BuildNoteData ()
+    {
         //		print ("parse");
         SortedDictionary<float, List<int>> listNotes = new SortedDictionary<float, List<int>>();
         for (int i = 0; i < notesData.Count; i++) {
@@ -115,12 +128,14 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
                 listNotesID.Add(notesData[i].nodeID);
                 listNotes.Add(timeAppear, listNotesID);
             }
-            else {
+            else
+            {
                 listNotes[timeAppear].Add(notesData[i].nodeID);
             }
         }
         queueNoteData.Clear();
-        foreach (float f in listNotes.Keys) {
+        foreach (float f in listNotes.Keys)
+        {
             queueNoteData.Enqueue(listNotes[f]);
         }
     }
@@ -129,16 +144,24 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
     /// Play a single note using piano player
     /// </summary>
     /// <param name="noteID"></param>
-    public void PlayPianoNote (int noteID, float volume = -1) {
-        if (pianoSoundIndexByID.ContainsKey(noteID)) {
+    public void PlayPianoNote (int noteID, float volume = -1)
+    {
+        if (pianoSoundIndexByID.ContainsKey(noteID))
+        {
             AudioManager.Instance.PlaySound(pianoSoundIndexByID[noteID], volume);
         }
     }
 
-    private void PlayAudioNotes (List<int> noteID) {
-        if (noteID != null && noteID.Count > 0) {
-            for (int i = 0; i < noteID.Count; i++) {
-                if (pianoSoundIndexByID.ContainsKey(noteID[i])) {
+    private void PlayAudioNotes (List<int> noteID)
+    {
+        Debug.Log("<color>PlayAudioNotes</color>");
+
+        if (noteID != null && noteID.Count > 0)
+        {
+            for (int i = 0; i < noteID.Count; i++)
+            {
+                if (pianoSoundIndexByID.ContainsKey(noteID[i]))
+                {
                     AudioManager.Instance.PlaySound(pianoSoundIndexByID[noteID[i]]);
                 }
                 //this.Print("Playing note " + id);
@@ -158,7 +181,8 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
     /// <param name="respectTimeStampDifferent">If the note datas have different time stamp, should them be played after each other or the same? </param>
     public void PlayPianoNotes (List<NoteData> listNotes, float timeRatio = 1, bool respectTimeStampDifferent = true, float delay = 0) {
         //print(string.Format("Playing {0} notes, time ratio = {1}, delay = {2}", listNotes.Count, timeRatio, delay));
-        if (listNotes != null && listNotes.Count > 0) {
+        if (listNotes != null && listNotes.Count > 0)
+        {
             //var listNotes = notes;
             float startTime = listNotes[0].timeAppear;
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -203,9 +227,11 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
             }
 #else
             for (int i = 0; i < listNotes.Count; i++) {
-                if (pianoSoundIndexByID.ContainsKey(listNotes[i].nodeID)) {
+                if (pianoSoundIndexByID.ContainsKey(listNotes[i].nodeID))
+                {
                     //in case user want to play notes in sequence
-                    if (respectTimeStampDifferent) {
+                    if (respectTimeStampDifferent)
+                    {
                         //int noteID = listNotes[i].nodeID;
                         float timeDelayed = (listNotes[i].timeAppear - startTime + delay) / timeRatio;
                         Timing.RunCoroutine(CoroutinePlaySoundDelayed(listNotes[i].nodeID, timeDelayed, listNotes[i].volume));
@@ -220,7 +246,9 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
                         //    .SetRecyclable(true)
                         //    .Play();
                     }                    
-                }else{
+                }
+                else
+                {
                     AudioManager.Instance.PlaySound(pianoSoundIndexByID[listNotes[i].nodeID]);
                 }
             }
@@ -228,13 +256,15 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
         }
     }
 
-    IEnumerator<float> CoroutinePlaySoundDelayed (int noteID, float delay, float volume = -1) {
+    IEnumerator<float> CoroutinePlaySoundDelayed (int noteID, float delay, float volume = -1)
+    {
         yield return Timing.WaitForSeconds(delay);
         AudioManager.Instance.PlaySound(pianoSoundIndexByID[noteID], volume);
         print("--playing note " + noteID);
     }
 
-    IEnumerator<float> CoroutinePlayPianoNoteDelayed (int[] noteIDs, float delay, float volume = -1) {
+    IEnumerator<float> CoroutinePlayPianoNoteDelayed (int[] noteIDs, float delay, float volume = -1)
+    {
         yield return Timing.WaitForSeconds(delay);
         AudioManager.Instance.PlaySounds(noteIDs, volume);
         //print("--playing note " + noteID);
@@ -249,10 +279,16 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
     /// <summary>
     /// Play next note in queue
     /// </summary>
-    public void PlayNextNote () {
-        if (!AudioManager.Instance.MuteSFX) {
-            if (isInitialized && shouldPlay) {
-                if (queueNoteData.Count > 0) {
+    public void PlayNextNote ()
+    {
+        Debug.Log("<color=red>PlayNextNote</color>");
+
+        if (!AudioManager.Instance.MuteSFX)
+        {
+            if (isInitialized && shouldPlay)
+            {
+                if (queueNoteData.Count > 0)
+                {
                     List<int> noteID = queueNoteData.Dequeue();
                     //loop song
                     queueNoteData.Enqueue(noteID);
@@ -265,29 +301,35 @@ public class MidiPlayer : MonoSingleton<MidiPlayer> {
         }
     }
 
-    public void LoadSong (string filePath, bool isAbsoluteFilePath = false) {
+    public void LoadSong (string filePath, bool isAbsoluteFilePath = false)
+    {
         byte[] midiData = FileUtilities.LoadFile(filePath, isAbsoluteFilePath);
         LoadSong(midiData);
     }
 
-    public void LoadSong (byte[] midiData) {
+    public void LoadSong (byte[] midiData)
+    {
         data = new MidiData();
-        if (midiData == null) {
+        if (midiData == null)
+        {
             return;
         }
         MidiParser.ParseNotesData(midiData, ref data);
         notesData = data.notesData[0];
         BuildNoteData();
     }
-    public void Pause () {
+    public void Pause ()
+    {
         shouldPlay = false;
     }
 
-    public void Stop () {
+    public void Stop ()
+    {
         shouldPlay = false;
     }
 
-    public void Play () {
+    public void Play ()
+    {
         shouldPlay = true;
     }
 }

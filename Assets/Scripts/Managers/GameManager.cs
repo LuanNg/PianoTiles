@@ -15,7 +15,8 @@ namespace Mio.TileMaster {
     /// <summary>
     /// Responsible for managing the game's state
     /// </summary>
-    public class GameManager : MonoSingleton<GameManager> {
+    public class GameManager : MonoSingleton<GameManager>
+    {
         #region Const variables
         private const string GAME_CONFIG_FILE = "config";
         private const string STORE_DATA_FILE = "store";
@@ -147,7 +148,8 @@ namespace Mio.TileMaster {
         //the csv text of achievement record data
         private string rawAchievementDump, rawPropertyDump;
 
-        void Awake () {
+        void Awake ()
+        {
             //generate save, load path to reduce string generation
             storedataWritePath = FileUtilities.GetWritablePath(STORE_DATA_FILE);
             gameconfigWritePath = FileUtilities.GetWritablePath(GAME_CONFIG_FILE);
@@ -166,7 +168,8 @@ namespace Mio.TileMaster {
             //}
         }
 
-		public void ResetCrossPromotion(){
+		public void ResetCrossPromotion()
+        {
 			//if (crossPromotion == null)
 			//	return;
 			//if (crossPromotion.data.Count == 0)
@@ -183,8 +186,10 @@ namespace Mio.TileMaster {
 			//}
 		}
 
-        void OnApplicationPause (bool state) {
-            if (ProfileHelper.Instance.IsUserDataInitialized) {
+        void OnApplicationPause (bool state)
+        {
+            if (ProfileHelper.Instance.IsUserDataInitialized)
+            {
                 SaveUserData();
                 ProfileHelper.Instance.PushUserData(true);
             }
@@ -194,7 +199,8 @@ namespace Mio.TileMaster {
             //}
         }
 
-        public void Initialize () {
+        public void Initialize ()
+        {
             //ParseUser.LogOut();
             MessageBus.Instance.Subscribe(MessageBusType.UserDataChanged, OnUserDataChanged);
             MessageBus.Instance.Subscribe(MessageBusType.UserDataConflictSolved, OnUserDataConflictSolved);
@@ -218,7 +224,8 @@ namespace Mio.TileMaster {
 
         
 
-        public void SetupGameFont (string language) {
+        public void SetupGameFont (string language)
+        {
             if ((language.Contains("Vietnamese")) || (language.Contains("English")) || (language.Contains("Russian"))) {
                 if (defaultFont == null) {
                     var font = Resources.Load<UIFont>(FONT_RESOURCE_DEFAULT) as UIFont;
@@ -232,8 +239,10 @@ namespace Mio.TileMaster {
 
                 referenceFontAtlas.replacement = defaultFont;
             }
-            else if (language.Contains("Japanese")) {
-                if (japaneseFont == null) {
+            else if (language.Contains("Japanese"))
+            {
+                if (japaneseFont == null)
+                {
                     var font = Resources.Load<UIFont>(FONT_RESOURCE_JAPANESE) as UIFont;
                     if (font == null) {
                         Debug.LogError("Can't load Japanese font from resource. No text will be shown");
@@ -245,10 +254,13 @@ namespace Mio.TileMaster {
 
                 referenceFontAtlas.replacement = japaneseFont;
             }
-            else if (language.Contains("Korean")) {
-                if (koreanFont == null) {
+            else if (language.Contains("Korean"))
+            {
+                if (koreanFont == null)
+                {
                     var font = Resources.Load<UIFont>(FONT_RESOURCE_KOREAN) as UIFont;
-                    if (font == null) {
+                    if (font == null)
+                    {
                         Debug.LogError("Can't load Korean font from resource. No text will be shown");
                         return;
                     }
@@ -260,7 +272,8 @@ namespace Mio.TileMaster {
             }
         }
 
-        private void OnSuceedFB (Message obj) {
+        private void OnSuceedFB (Message obj)
+        {
             //if (ParseUser.CurrentUser != null) {
             //    Debug.Log("Querying level ranking data...");
             //    RankingManager.Instance.InitializeFriendData();

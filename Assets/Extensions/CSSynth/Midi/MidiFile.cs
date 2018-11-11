@@ -5,7 +5,8 @@ using System.IO;
 using UnityEngine;
 
 namespace CSSynth.Midi {
-    public class MidiFile {
+    public class MidiFile
+    {
         //--Variables
         private uint BPM = 120; //beats per minute
         private uint MPQN = 500000; //microseconds per 1/4 note
