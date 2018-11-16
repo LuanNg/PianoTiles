@@ -1,6 +1,0 @@
-textN1	Dear User!
-textN2	We use Google Admob to show ads . Ads support our work, and enable further devlopment of this app. In line with the new European Data Protection Regulation (GDPR), we need your consent to serve ads tailored for you
-textN3	Can you data be used to show ads tailored for you ?? 
-textN4	Learn how your data is used
-textN5	YES, CONTINUE TO SHOW RELEVANT ADS
-textN6	NO, SHOW ADS THAT ARE IRRELEVANT

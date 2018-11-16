@@ -1,6 +1,0 @@
-textN1	Sehr geehrter Nutzer!
-textN2	Wir verwenden Google Admob, um Anzeigen zu schalten. Die Anzeigen unterstützen unsere Arbeit und ermöglichen die Weiterentwicklung dieser Anwendung. Im Einklang mit der neuen europäischen Datenschutzverordnung (DSGVO) benötigen wir Ihre Zustimmung, um personalisierte Ankündigungen für Sie zu veröffentlichen.
-textN3	Können Sie die Daten verwenden, um für Sie zugeschnittene Anzeigen zu schalten?
-textN4	Erfahren Sie, wie Ihre Daten verwendet werden
-textN5	JA, WEITERE ANZEIGEN ZEIGEN
-textN6	NEIN, ZEIGEN SIE ANZEIGEN, DIE IRRELEVANTES SIND

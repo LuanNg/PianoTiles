@@ -1,6 +1,0 @@
-textN1	Gentile utente!
-textN2	Utilizziamo Google Admob per mostrare annunci. Le pubblicità supportano il nostro lavoro e consentono ulteriori sviluppi di questa applicazione. In linea con il nuovo regolamento europeo sulla protezione dei dati (GDPR), abbiamo bisogno del tuo consenso per pubblicare annunci personalizzati per te.
-textN3	Puoi utilizzare i dati per mostrare annunci personalizzati per te?
-textN4	Scopri come vengono utilizzati i tuoi dati
-textN5	SÌ, CONTINUA A MOSTRARE I ANNUNCI IMPORTANTI
-textN6	NO, MOSTRA ANNUNCI CHE SONO IRRILEVANTI

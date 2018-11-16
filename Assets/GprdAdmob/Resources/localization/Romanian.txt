@@ -1,6 +1,0 @@
-textN1	Dragă utilizatorule!
-textN2	Utilizăm Google Admob pentru a afișa anunțuri. Anunțurile acceptă activitatea noastră și permit dezvoltarea ulterioară a acestei aplicații. În conformitate cu noul Regulament european privind protecția datelor (GDPR), avem nevoie de acordul dvs. pentru a difuza anunțuri adaptate pentru dvs.
-textN3	Puteți utiliza datele pentru a afișa anunțuri adaptate pentru dvs.? 
-textN4	Aflați cum sunt utilizate datele dvs.
-textN5	DA, continuați să arătați ADS-urile relevante
-textN6	NU, ARĂTAȚI ADEZI CARE NU SUNT IRRELEVANȚI
